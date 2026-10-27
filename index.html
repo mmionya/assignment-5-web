@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assignment 5 | Miras Zhumazhan</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+  <script src="task1.js" defer></script>
+  <script src="task2.js" defer></script>
+  <script src="task3.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Assignment 5</h1>
+    <p>Miras Zhumazhan <span aria-hidden="true">·</span> IT-2512</p>
+    <nav aria-label="Tasks">
+      <a href="#game">01 Game</a>
+      <a href="#board">02 Board</a>
+      <a href="#character">03 Form</a>
+    </nav>
+  </header>
+  <main>
+    <section id="game" aria-labelledby="game-title">
+      <p class="eyebrow">Task 1A</p>
+      <h2 id="game-title">Higher or Lower</h2>
+      <p>Guess the next number. Equal numbers count as correct.</p>
+      <div class="game-stats">
+        <div>Current number<strong id="game-number"></strong></div>
+        <div>Lives<strong id="game-lives"></strong></div>
+        <div>Streak<strong id="game-streak"></strong></div>
+        <div>Best<strong id="game-best"></strong></div>
+      </div>
+      <div class="actions">
+        <button id="game-higher" type="button" data-guess="higher">Higher</button>
+        <button id="game-lower" type="button" data-guess="lower">Lower</button>
+        <button id="game-restart" class="secondary" type="button">Restart</button>
+      </div>
+      <p id="game-message" class="message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="board" aria-labelledby="board-title">
+      <p class="eyebrow">Task 2A</p>
+      <h2 id="board-title">Study board</h2>
+      <p>Move tasks between columns. In progress can hold up to 3 cards.</p>
+      <div class="board-tools">
+        <label for="board-tag">Tag<select id="board-tag"></select></label>
+        <label for="board-sort">Sort by<select id="board-sort">
+          <option value="priority">Priority</option>
+          <option value="title">Title</option>
+        </select></label>
+      </div>
+      <label for="board-progress">Overall progress</label>
+      <progress id="board-progress" max="100" value="0"></progress>
+      <p id="board-summary"></p>
+      <p id="board-message" class="message" role="status" aria-live="polite"></p>
+      <div id="board-columns" class="board-columns"></div>
+    </section>
+
+    <section id="character" aria-labelledby="character-title">
+      <p class="eyebrow">Task 3B</p>
+      <h2 id="character-title">Character creator</h2>
+      <p>Use exactly 20 skill points (1–10 each). Your class needs a main skill of 6 and a second skill of 4.</p>
+      <div class="creator-layout">
+        <form id="character-form">
+          <p id="form-errors" class="error" role="alert" hidden></p>
+          <div class="field">
+            <label for="hero-name">Name</label>
+            <input id="hero-name" name="name" required minlength="2" maxlength="20"
+              pattern="[A-Za-z][A-Za-z ]{1,19}" aria-describedby="name-help name-error" aria-invalid="false">
+            <small id="name-help">2–20 English letters/spaces. Taken: Admin, Hero, Merlin.</small>
+            <p id="name-error" class="field-error"></p>
+          </div>
+          <div class="field">
+            <label for="hero-class">Class</label>
+            <select id="hero-class" name="class" required aria-describedby="class-help class-error" aria-invalid="false">
+              <option value="">Choose a class</option>
+              <option value="warrior">Warrior</option>
+              <option value="mage">Mage</option>
+              <option value="rogue">Rogue</option>
+            </select>
+            <small id="class-help">Warrior: strength 6, agility 4. Mage: magic 6, intelligence 4. Rogue: agility 6, intelligence 4.</small>
+            <p id="class-error" class="field-error"></p>
+          </div>
+          <div class="field">
+            <label for="hero-color">Color</label>
+            <select id="hero-color" name="color" required aria-describedby="color-error" aria-invalid="false">
+              <option value="blue">Blue</option>
+              <option value="green">Green</option>
+              <option value="purple">Purple</option>
+            </select>
+            <p id="color-error" class="field-error"></p>
+          </div>
+          <fieldset>
+            <legend>Skills</legend>
+            <div class="skills-grid">
+              <div class="field">
+                <label for="strength">Strength</label>
+                <input id="strength" name="strength" type="number" min="1" max="10" step="1" value="5" required aria-describedby="strength-error" aria-invalid="false">
+                <p id="strength-error" class="field-error"></p>
+              </div>
+              <div class="field">
+                <label for="agility">Agility</label>
+                <input id="agility" name="agility" type="number" min="1" max="10" step="1" value="5" required aria-describedby="agility-error" aria-invalid="false">
+                <p id="agility-error" class="field-error"></p>
+              </div>
+              <div class="field">
+                <label for="intelligence">Intelligence</label>
+                <input id="intelligence" name="intelligence" type="number" min="1" max="10" step="1" value="5" required aria-describedby="intelligence-error" aria-invalid="false">
+                <p id="intelligence-error" class="field-error"></p>
+              </div>
+              <div class="field">
+                <label for="magic">Magic</label>
+                <input id="magic" name="magic" type="number" min="1" max="10" step="1" value="5" required aria-describedby="magic-error" aria-invalid="false">
+                <p id="magic-error" class="field-error"></p>
+              </div>
+            </div>
+          </fieldset>
+          <button type="submit">Create character</button>
+        </form>
+        <aside aria-label="Character preview and result">
+          <h3>Live preview</h3>
+          <div id="character-preview" class="character-card blue" aria-live="polite"></div>
+          <p id="points-left" role="status"></p>
+          <div id="character-result" aria-live="polite"></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
